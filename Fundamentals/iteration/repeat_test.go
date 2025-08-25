@@ -1,4 +1,4 @@
-package interation
+package iteration
 
 import (
 	"fmt"
@@ -17,7 +17,8 @@ func TestRepeat(t *testing.T) {
 func BenchmarkRepeat(b *testing.B) {
 	// When the benchmark code is executed, it runs b.N times and measures how long it takes.
 	// use `go test -bench=.`
-	for i := 0; i < b.N; i++ {
+	// use `go test -bench=. -benchmem`, reports information about memory allocations
+	for b.Loop() {
 		Repeat("a")
 	}
 	/*
@@ -25,6 +26,12 @@ func BenchmarkRepeat(b *testing.B) {
 		72.50 ns/op means is our fn takes on average 72.5 nanosecond to run (locally)
 		and to get this result it ran 16,066,174 times
 		default benchmarks are run sequentially
+	*/
+
+	/* output with -benchmem
+	10000000           25.70 ns/op           8 B/op           1 allocs/op
+	B/op: the number of bytes allocated per iteration (less is better)
+	allocs/op: the number of memory allocations per iteration (less is better)
 	*/
 }
 
