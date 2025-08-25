@@ -17,15 +17,14 @@ func TestSum(t *testing.T) {
 			t.Errorf("got %d want %d given %v", got, expected, numbers)
 		}
 	})
+}
 
-	t.Run("collection of 5 other numbers", func(t *testing.T) {
-		numbers := []int{1, 2, 3}
+func TestSumAll(t *testing.T) {
 
-		got := Sum(numbers)
-		expected := 6
+	got := SumAll([]int{1, 2}, []int{0, 9})
+	want := []int{3, 9}
 
-		if got != expected {
-			t.Errorf("got %d want %d given %v", got, expected, numbers)
-		}
-	})
+	if got != want {
+		t.Errorf("got %v want %v", got, want)
+	}
 }
