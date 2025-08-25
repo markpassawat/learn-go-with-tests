@@ -6,7 +6,7 @@ import (
 )
 
 func TestRepeat(t *testing.T) {
-	repeated := Repeat("a")
+	repeated := Repeat("a", 5)
 	expected := "aaaaa"
 
 	if repeated != expected {
@@ -19,7 +19,7 @@ func BenchmarkRepeat(b *testing.B) {
 	// use `go test -bench=.`
 	// use `go test -bench=. -benchmem`, reports information about memory allocations
 	for b.Loop() {
-		Repeat("a")
+		Repeat("a", 5)
 	}
 	/*
 		output: 16066174                72.50 ns/op
@@ -36,7 +36,7 @@ func BenchmarkRepeat(b *testing.B) {
 }
 
 func ExampleRepeat() {
-	repeat := Repeat("b")
+	repeat := Repeat("b", 5)
 	fmt.Println(repeat)
 	// output: bbbbb
 }
